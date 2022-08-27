@@ -1,0 +1,243 @@
+label {
+	font-size: 20px;
+}
+.container {
+	max-width: 100% !important;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+	display: none;
+	background-color: #99999978;
+	z-index: 1000 !important;
+}
+
+.spinner-border {
+	top: 50% !important;
+	position: absolute;
+}
+
+h2 {
+	font-size: 30px;
+	width: 100%;
+	line-height: 30px;
+
+}
+
+span {
+	display: block;
+}
+
+
+
+.input-file-hide {
+	display: none;
+}
+
+#holder, #holder_result, #holder-empty {
+	text-align: center;
+	max-height: 800px;
+	height: 400px;
+	padding: 10px;
+}
+
+.holder_default {
+	height: 400px;
+	border: 3px dashed #ccc;
+	text-align: center;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
+
+#image_result, #image_droped {
+	object-fit: contain;
+	max-width: 100%;
+	max-height: 100%;
+	height: inherit !important;
+}
+
+.image_droped {
+	object-fit: contain;
+	max-width: 100%;
+	max-height: 100%;
+	height: inherit !important;
+	border: 3px dashed #ccc;
+}
+
+#image_result {
+	object-fit: contain;
+	max-width: 100%;
+	max-height: 100%;
+	height: inherit !important;
+}
+
+.result-header {
+	text-align: center;
+	display: block;
+	font-size: 22px;
+	font-weight: bold;
+	background-color:aliceblue;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+div.img-result {
+	width: 500px;
+	display: block;
+}
+
+
+/* vik*/
+body {
+	margin: 0;
+	font-family: Poppins,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+  h1 {
+font-size: 3.75rem;
+font-weight: 700;
+}
+.h2, h2 {
+font-size: 2.5rem;
+font-weight: 700;
+}
+p {
+font-size: 18px;
+}
+  .top-container {
+	background-color: #f1f1f1;
+	padding: 30px;
+	text-align: center;
+  }
+  
+  .header {
+	padding: 10px 16px;
+	background: #fff;
+box-shadow: 0 2px 12px rgb(0 0 0 / 10%);
+  }
+  
+  .content {
+	padding: 16px;
+  }
+  
+  .sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99;
+  }
+  
+  .sticky + .content {
+	padding-top: 102px;
+  }
+  .card {
+box-shadow: 0 0 40px rgb(0 0 0 / 10%);
+border: none;
+text-align: center;
+}
+.form-control-box {
+padding: 0px 0px 0px 73px;
+  font-size: 18px;
+
+  border-radius: 99px;
+  color: #fff;
+  background-color: #0f70e6;
+  border-color: #0f70e6;
+
+}
+.btn-submit {
+border: 1px solid #0f70e6;
+box-sizing: border-box;
+background: 0 0;
+border-radius: 4px;
+font-size: 23px !important;
+/* font-family: 'Nunito Sans'; */
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+text-align: center;
+color: #0f70e6;
+position: relative;
+top: 1.5rem;
+padding: 13px 49px;
+}
+
+
+
+label{
+  cursor:pointer;
+}
+
+
+.c-layer{
+overflow: hidden; /* important */
+top:0;
+left:0;
+width: 100%;
+height: 100%;
+}
+
+.c-layer-2 {
+width: 50%;
+}
+
+.image {
+margin:0;
+padding:0;
+width: 200px; /* same as container*/
+height:100%;
+}
+img.image.sec {
+margin-left: 136px;
+}
+
+footer.page-footer.font-small.indigo {
+background: #263238 !important
+}
+h5.font-weight-bold.text-uppercase.mt-3.mb-4 {
+color: #fff;
+}
+h5.clr-white.mt-3.mb-4 {
+color: #fff;
+font-size: 24px;
+}
+.list-unstyled > li > a {
+padding-left: 0;
+list-style: none;
+color: #fff;
+}
+.footer-copyright{
+  overflow: hidden;
+color: rgba(255,255,255,0.6);
+background-color: rgba(0,0,0,0.2);
+}  
+img.logo {
+width: 145px;
+} 
+.card-result {
+    border: 3px dashed #ccc;
+    box-shadow: 0 0 40px rgb(0 0 0 / 10%);
+    text-align: center;
+
+}
+.d-download {
+    text-align: center;
+    margin: 46px 5px 64px 6px;
+}
+.download-btn {
+    color: #fff;
+    background: #0d6efd;
+    padding: 18px;
+    text-decoration: none;
+    border-radius: 7px;
+    font-size: 19px;
+}

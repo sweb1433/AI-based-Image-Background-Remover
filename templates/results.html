@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Deep Learning in Action</title>
+    <script src="static/js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/before-after-slider@1.0.0/dist/slider.bundle.js"></script>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+</head>
+
+<body>
+    <div class="header" id="myHeader">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"><img src="../static/image/logo (2).png" class="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+      </div>
+      <div class="content">
+    <div class="overlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div class="container overflow-hidden">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-1 gy-3"></div>
+                <div class="col-sm-4 gy-3">
+                    <span class="result-header">Current Background</span>
+                    <input class="control input-file-hide" type="file" id="input_file" />
+                    <div id="holder" class="holder_default">
+                        <span id="label_drop_here"> Drag your background image here </span>
+                        <img src="" id="image_droped" style="border: 3px dashed #ccc;" class=" hidden" />
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" class="btn btn-primary" id="btn-clean">Change Background</button>
+                    </div>
+                </div>
+                <div class="col-sm-6 gy-3">
+                    <span class="result-header">Result Image</span>
+                    <div id="holder_result">
+                        <div id="image-comparison"></div>
+                    </div>
+                </div>
+                <div class="col-sm-1 gy-3"></div>
+               
+            </div>
+            <div class="row">
+                <div class="col-sm-3 gy-3"></div>
+            <div class="col-sm-6 gy-3">
+
+                <div class="card-result">
+                <img  id="final-res" src="" alt="" srcset="">
+                <br>
+               
+
+            </div>
+            <div class="d-download">
+            <a id="madarchod" href="" download="smile.jpg" class="download-btn">Download image</a>
+            </div>
+            </div>
+            <div class="col-sm-3 gy-2"></div>
+        </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    slider = new SliderBar({
+        el: '#image-comparison',
+        beforeImg: '{{original_path}}',
+        afterImg: '{{filepath}}',
+        width: "100%",
+        height: "400px",
+        line: true,
+        lineColor: "rgba(0,0,0,0.3)"
+    });
+
+    $("#final-res").attr("src", '{{filepath}}');
+    $("#madarchod").attr("href", '{{filepath}}');
+
+    holder.ondragover = function () {
+        return false;
+    };
+    holder.ondrop = function (e) {
+        this.className = 'hidden';
+        e.preventDefault();
+        file = e.dataTransfer.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            document.getElementById('image_droped').className = 'visible'
+            $('#image_droped').attr('src', event.target.result);
+            $('#label_drop_here').hide()
+        }
+        reader.readAsDataURL(file);
+        $("#file").val(file)
+        $($("#file")).trigger('change');
+    };
+
+
+    $('#btn-clean').on('click', function () {
+        var form_data = new FormData();
+        form_data.append('file', file);
+        form_data.append('img_no_bk', '{{img_no_bk}}');
+        $.ajax({
+            url: '/change-bg',
+            type: "post",
+            data: form_data,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            processData: false,
+            cache: false,
+            beforeSend: function () {
+                $(".overlay").show()
+            },
+        }).done(function (jsondata, textStatus, jqXHR) {
+            payload = jsondata
+            $(".overlay").hide()
+            $("#final-res").attr("src", payload.img_with_bk);
+            $("#madarchod").attr("href", payload.img_with_bk);
+            new SliderBar({
+                el: '#image-comparison',
+                beforeImg: '{{original_path}}',
+                afterImg: payload.img_with_bk,
+                width: "100%",
+                height: "400px",
+                line: true,
+                lineColor: "rgba(255,0,0,0.3)"
+            });
+
+        }).fail(function (jsondata, textStatus, jqXHR) {
+            console.log(jsondata)
+            $(".overlay").hide()
+        });
+    })
+</script>
+<script>
+    window.onscroll = function() {myFunction()};
+    
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+    
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+    </script>
+
+</html>
